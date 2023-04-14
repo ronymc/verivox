@@ -1,0 +1,34 @@
+<div class="filter-container">
+  <div>
+    <label for="minSpeedSelector">Min Speed</label>
+    <select
+      [(ngModel)]="minSpeed"
+      id="minSpeedSelector"
+      (change)="filterApplied()"
+    >
+      <option *ngFor="let speed of speedOptions" [value]="speed">
+        {{ +speed }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="maxPriceSelector">Max Price</label>
+    <select [(ngModel)]="maxPrice" (change)="filterApplied()">
+      <option *ngFor="let price of priceOptions" [value]="price">
+        {{ price }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <input
+      type="checkbox"
+      name="Young Peopele Tariff"
+      id="youngPeopleTariff"
+      (change)="filterApplied()"
+      [(ngModel)]="isYoungPeopleTariff"
+    />
+    <label for="youngPeopleTariff">Young People Tariff</label>
+  </div>
+</div>

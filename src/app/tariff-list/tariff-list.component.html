@@ -1,0 +1,40 @@
+<ng-container>
+  <app-tariff-filter
+    (filterSelected)="filterSelected($event)"
+  ></app-tariff-filter>
+  <ng-container *ngIf="tariffs$ | async as tariffs">
+    <div *ngIf="tariffs.length > 0; else noTariffs">
+      <div class="tariff-item" *ngFor="let tariff of tariffs; let i = index">
+        <div class="index">{{ i + 1 }}</div>
+
+        <div class="tariff-name">{{ tariff.name }}</div>
+
+        <div class="speeds">
+          <div>
+            <div class="speed-type">Download</div>
+            <fa-icon [icon]="faArrowDown" class="icon"></fa-icon>
+            <span class="speed">{{ tariff.downloadSpeed }} Mbits/s</span>
+          </div>
+
+          <div class="upload-speed">
+            <div class="speed-type">Upload</div>
+            <fa-icon [icon]="faArrowUp" class="icon"></fa-icon>
+            <span class="speed">{{ tariff.uploadSpeed }} Mbits/s</span>
+          </div>
+        </div>
+
+        <ul class="benefits">
+          <li *ngFor="let benefit of tariff.benefits">{{ benefit }}</li>
+        </ul>
+
+        <div class="price-details">
+          <div class="price">{{ tariff.price }} €</div>
+          <button class="details-link">To Tariff ></button>
+          <button class="details-link-mobile">></button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noTariffs> Nothing matches your criteria. </ng-template>
+</ng-container>
